@@ -1,0 +1,62 @@
+
+import tkinter as tk
+
+class Menu:
+
+    
+    def __init__(self):
+        self.window = tk.Tk()
+        self.window.title("Genius")
+        self.window.geometry("700x700")
+        self.window.rowconfigure(0, minsize=100, weight=1)
+        self.window.rowconfigure(1, minsize=10, weight=1)
+        self.window.rowconfigure(2, minsize=10, weight=1)
+        self.window.rowconfigure(3, minsize=10, weight=1)
+        self.window.rowconfigure(4, minsize=10, weight=1)
+        self.window.rowconfigure(5, minsize=10, weight=1)
+        self.window.columnconfigure(0, minsize=50, weight=1)
+        self.window.columnconfigure(1, minsize=100, weight=1)
+        self.window.columnconfigure(2, minsize=100, weight=1)
+        self.window.columnconfigure(3, minsize=100, weight=1)
+        self.window.columnconfigure(4, minsize=50, weight=1)
+
+        
+    #Criando os Botões:
+        
+        self.título = tk.Label(self.window)
+        self.título.grid(row=0, column=1, columnspan=3, sticky="nsew")
+        self.título.configure(text="GENIUS BROL",activebackground='black', background='green', font='Symbol 75')
+
+        self.fundo1 = tk.Label(self.window)
+        self.fundo1.grid(row=0, column=0, rowspan=5, sticky="nsew")
+        self.fundo1.configure(background='green')
+        
+        self.fundo2 = tk.Label(self.window)
+        self.fundo2.grid(row=0, column=4, rowspan=5, sticky="nsew")
+        self.fundo2.configure(background='green')
+        
+        self.fundo3 = tk.Label(self.window)
+        self.fundo3.grid(row=5, column=0, columnspan=5, sticky="nsew")
+        self.fundo3.configure(background='green')
+
+        self.botãoclassico = tk.Button(self.window)
+        self.botãoclassico.grid(row=1, column=1, columnspan=3, sticky="nsew")
+        self.botãoclassico.configure(text="Modo clássico", font='Symbol 30')
+         
+        self.botãomulti = tk.Button(self.window)
+        self.botãomulti.grid(row=2, column=1, columnspan=3, sticky="nsew")
+        self.botãomulti.configure(text="Modo multijogador", font='Symbol 30')
+          
+        self.botãomusic = tk.Button(self.window)
+        self.botãomusic.grid(row=3, column=1, columnspan=3, sticky="nsew")
+        self.botãomusic.configure(text="Modo música", font='Symbol 30')
+
+        self.botãoajuda = tk.Button(self.window)
+        self.botãoajuda.grid(row=4, column=1, columnspan=3, sticky="nsew")
+        self.botãoajuda.configure(text="? Ajuda ?", font='Symbol 30')
+  
+    def iniciar(self):
+        self.window.mainloop() 
+
+projeto =Menu()
+projeto.iniciar()

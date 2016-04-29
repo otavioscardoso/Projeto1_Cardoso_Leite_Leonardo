@@ -1,7 +1,7 @@
 
 import tkinter as tk
 
-from Classico.py import *
+from Classico import *
 
 class Menu:
 
@@ -49,9 +49,13 @@ class Menu:
         self.botao_ajuda.configure(background = 'DarkOrange1', text="? Ajuda ?", font='Arial 30')
         
     def iniciar_menu_classico(self):
+        self.quit()
         self.menu_classico = Classico()
         self.menu_classico.iniciar_classico()
         
+    def quit(self):
+        self.window.destroy()
+  
     def iniciar_menu(self):
         self.window.mainloop() 
 

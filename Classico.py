@@ -57,6 +57,9 @@ class Classico:
         self.botãomenu = tk.Button(self.window_classico)
         self.botãomenu.grid(row=6, column=2, sticky="nsew")
         self.botãomenu.configure(background = 'snow', text="Menu", font='Arial 20')
+        
+    def quit(self):
+        self.window.destroy()
   
     def iniciar_classico(self):
         self.window_classico.mainloop() 

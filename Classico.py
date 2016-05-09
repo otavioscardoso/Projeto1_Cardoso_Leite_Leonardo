@@ -1,9 +1,13 @@
 import tkinter as tk
 
+from random import randint
+
+import time
+
 class Classico:
     def __init__(self):
         self.window_classico = tk.Tk()
-        self.window_classico.config(background = 'navy')
+        self.window_classico.config(background = 'black')
         self.window_classico.title("Modo clássico")
         self.window_classico.geometry("700x700")
         
@@ -21,43 +25,150 @@ class Classico:
         self.window_classico.columnconfigure(3, minsize=100, weight=1)
         self.window_classico.columnconfigure(4, minsize=100, weight=1)
         self.window_classico.columnconfigure(5, minsize=100, weight=1)
+        
+        self.nivel = 0
+        self.iniciar = False
+        self.cria_jogada=[]
+        self.jogada_usuario=[]
+        self.botao_clicado = False
+        self.tempo = 1
 
         self.pontos = tk.Label(self.window_classico)
-        self.pontos.grid(row=6, column=3, columnspan=3, sticky="nsew")
-        self.pontos.configure(text="Pontos:", font='Arial 20', background='snow')
+        self.pontos.grid(row=6, column=4, columnspan=2, sticky="nsew")
+        self.pontos.configure(text="NÍVEL: {0}".format(self.nivel), font='Broadway 18', background='black', fg = 'cyan')
         
         self.titulo = tk.Label(self.window_classico)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
-        self.titulo.configure(text = 'Clássico', fg = 'snow', font='Arial 67', background='navy')
+        self.titulo.configure(text = 'CLÁSSICO', font='Broadway 64', fg = 'cyan', background='black')
 
-        self.botão1 = tk.Button(self.window_classico)
-        self.botão1.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
-        self.botão1.configure(background = 'yellow')
+        self.botao0 = tk.Button(self.window_classico)
+        self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao0.configure(activebackground = 'pale goldenrod', background = 'yellow', borderwidth=12, command = self.click_botao0)
          
-        self.botão2 = tk.Button(self.window_classico)
-        self.botão2.grid(row=3, column=1, columnspan=2, rowspan=2, sticky="nsew")
-        self.botão2.configure(background = 'green2')
+        self.botao1 = tk.Button(self.window_classico)
+        self.botao1.grid(row=3, column=1, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao1.configure(activebackground = 'pale green', background = 'green2', borderwidth=12, command = self.click_botao1)
           
-        self.botão3 = tk.Button(self.window_classico)
-        self.botão3.grid(row=1, column=3, columnspan=2, rowspan=2, sticky="nsew")
-        self.botão3.configure(background = 'red')
+        self.botao2 = tk.Button(self.window_classico)
+        self.botao2.grid(row=1, column=3, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao2.configure(activebackground = 'tomato', background = 'red', borderwidth=12, command = self.click_botao2)
 
-        self.botão4 = tk.Button(self.window_classico)
-        self.botão4.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
-        self.botão4.configure(background = 'blue')
+        self.botao3 = tk.Button(self.window_classico)
+        self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
         
-        self.botãoiniciar = tk.Button(self.window_classico)
-        self.botãoiniciar.grid(row=6, column=0, sticky="nsew")
-        self.botãoiniciar.configure(background = 'snow', text="Iniciar", font='Arial 20')
+        self.botaoiniciar = tk.Button(self.window_classico)
+        self.botaoiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
+        self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16', command = self.botaoiniciar_teste)
           
-        self.botãopausar = tk.Button(self.window_classico)
-        self.botãopausar.grid(row=6, column=1,sticky="nsew")
-        self.botãopausar.configure(background = 'snow', text="Pausar", font='Arial 20')
-
-        self.botãomenu = tk.Button(self.window_classico)
-        self.botãomenu.grid(row=6, column=2, sticky="nsew")
-        self.botãomenu.configure(background = 'snow', text="Menu", font='Arial 20')
+        self.botaomenu = tk.Button(self.window_classico)
+        self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
+        self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')   
         
+    def botaoiniciar_teste(self):
+        self.botaoiniciar.destroy()        
+        self.realiza_jogadas()
+    
+    def click_botao0(self):
+        self.jogada_usuario.append(0)
+        self.verifica_jogadas()
+        
+    def click_botao1(self):
+        self.jogada_usuario.append(1)
+        self.verifica_jogadas()
+        
+    def click_botao2(self):
+        self.jogada_usuario.append(2)
+        self.verifica_jogadas()
+        
+    def click_botao3(self):
+        self.jogada_usuario.append(3)
+        self.verifica_jogadas()
+    
+    def piscar(self):
+        for i in self.cria_jogada:
+            if i == 0:
+                self.botao0.configure(background = 'pale goldenrod')
+                self.window_classico.update()
+                time.sleep(self.tempo * 0.70)
+                self.botao0.configure(background = 'yellow')
+            elif i == 1:
+                self.botao1.configure(background = 'pale green')
+                self.window_classico.update()
+                time.sleep(self.tempo * 0.70)
+                self.botao1.configure(background = 'green2')
+            elif i == 2:
+                self.botao2.configure(background = 'tomato')
+                self.window_classico.update()
+                time.sleep(self.tempo * 0.70)
+                self.botao2.configure(background = 'red')
+            elif i == 3:
+                self.botao3.configure(background = 'sky blue')
+                self.window_classico.update()
+                time.sleep(self.tempo * 0.70)
+                self.botao3.configure(background = 'blue')
+            self.window_classico.update()
+            time.sleep(self.tempo)
+        
+    def realiza_jogadas(self):
+        print ("realiza jogadas")
+        self.cria_jogada.append(randint(0,3))
+        print(self.cria_jogada)
+        self.piscar()
+        self.numero_botao = 0
+            
+    def verifica_jogadas(self):
+        if self.jogada_usuario[self.numero_botao] != self.cria_jogada[self.numero_botao]:
+            self.cria_jogada = []
+            self.jogada_usuario = []
+            self.erro()
+            print("Errou")
+        self.numero_botao += 1
+        self.window_classico.update()
+        if self.numero_botao == len(self.cria_jogada):  
+            time.sleep(1)
+            self.tempo = self.tempo * 0.90
+            print(self.tempo)
+            self.nivel += 1
+            self.jogada_usuario = []
+            self.realiza_jogadas()
+    
+    def erro(self):
+        self.tempo = 1
+        self.botao0.destroy()
+        self.botao1.destroy()
+        self.botao2.destroy()
+        self.botao3.destroy()
+        self.perdeu = tk.Label(self.window_classico)
+        self.perdeu.grid(row=1, column=1, columnspan=4, rowspan=4, sticky="nsew")
+        self.perdeu.configure(text="VOCÊ PERDEU...", font='Broadway 42', background='black', fg = 'cyan')
+        self.botaoreiniciar = tk.Button(self.window_classico)
+        self.botaoreiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
+        self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')
+        self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
+
+    def botaoreiniciar_teste(self):
+        self.botao0 = tk.Button(self.window_classico)
+        self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao0.configure(activebackground = 'pale goldenrod', background = 'yellow', borderwidth=12, command = self.click_botao0)
+         
+        self.botao1 = tk.Button(self.window_classico)
+        self.botao1.grid(row=3, column=1, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao1.configure(activebackground = 'pale green', background = 'green2', borderwidth=12, command = self.click_botao1)
+          
+        self.botao2 = tk.Button(self.window_classico)
+        self.botao2.grid(row=1, column=3, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao2.configure(activebackground = 'tomato', background = 'red', borderwidth=12, command = self.click_botao2)
+
+        self.botao3 = tk.Button(self.window_classico)
+        self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
+        self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
+        
+        self.window_classico.update()
+        time.sleep(0.5)
+        self.realiza_jogadas()
+        
+         
     def quit(self):
         self.window.destroy()
   

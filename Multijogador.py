@@ -35,23 +35,23 @@ class Multijogador:
 
         self.pontos = tk.Label(self.window)
         self.pontos.grid(row=1, column=3, columnspan=2, sticky="nsew")
-        self.pontos.configure(text="Pontos 1:", font='Symbol 30', background='snow')
+        self.pontos.configure(text="Pontos:", font='Symbol 30', background='snow')
         
         self.pontos = tk.Label(self.window)
         self.pontos.grid(row=1, column=8, columnspan=2, sticky="nsew")
-        self.pontos.configure(text="Pontos 2:", font='Symbol 30', background='snow')
+        self.pontos.configure(text="Pontos:", font='Symbol 30', background='snow')
         
         self.jogador1 = tk.Label(self.window)
         self.jogador1.grid(row=1, column=1, columnspan=2, sticky="nsew")
-        self.jogador1.configure(text="Jogador1:", font='Symbol 30', background='snow')
+        self.jogador1.configure(text="Jogador 1:", font='Symbol 30', background='snow')
         
         self.jogador2 = tk.Label(self.window)
         self.jogador2.grid(row=1, column=6, columnspan=2, sticky="nsew")
-        self.jogador2.configure(text="Jogador2:", font='Symbol 30', background='snow')
+        self.jogador2.configure(text="Jogador 2:", font='Symbol 30', background='snow')
         
         self.titulo = tk.Label(self.window)
         self.titulo.grid(row=0, column=4, columnspan=4, sticky="nsew")
-        self.titulo.configure(text="Multijogador", font='Symbol 70', background='deep pink')
+        self.titulo.configure(text="Multijogador", font='Symbol 67', background='deep pink')
 
         self.botão0 = tk.Button(self.window)
         self.botão0.grid(row=2, column=1, columnspan=2, rowspan=2, sticky="nsew")
@@ -100,4 +100,4 @@ class Multijogador:
 
 projeto = Multijogador()
 projeto.iniciar()
-        
+

@@ -119,31 +119,35 @@ class Classico:
                 time.sleep(self.tempo * 0.40)
                 self.botao3.configure(background = 'blue')
             self.window_classico.update()
-            time.sleep(self.tempo)
+            for j in range(len(self.cria_jogada)):
+                if j < len(self.cria_jogada) - 1:
+                    time.sleep(self.tempo)
         
     def realiza_jogadas(self):
+        self.botao0.configure(state = 'disabled')
+        self.botao1.configure(state = 'disabled')
+        self.botao2.configure(state = 'disabled')
+        self.botao3.configure(state = 'disabled')
         self.nivel = str(len(self.cria_jogada))
         self.label_pontuacao.set("NÍVEL: {0}".format(self.nivel))
-        print(self.nivel)
-        self.pontos.update()
-        print ("realiza jogadas")
         self.cria_jogada.append(randint(0,3))
-        print(self.cria_jogada)
         self.piscar()
         self.numero_botao = 0
+        self.botao0.configure(state = 'normal')
+        self.botao1.configure(state = 'normal')
+        self.botao2.configure(state = 'normal')
+        self.botao3.configure(state = 'normal')
             
     def verifica_jogadas(self):
         if self.jogada_usuario[self.numero_botao] != self.cria_jogada[self.numero_botao]:
             self.cria_jogada = []
             self.jogada_usuario = []
             self.erro()
-            print("Errou")
         self.numero_botao += 1
         self.window_classico.update()
         if self.numero_botao == len(self.cria_jogada):  
             time.sleep(1)
             self.tempo = self.tempo * 0.90
-            print(self.tempo)
             self.jogada_usuario = []
             self.realiza_jogadas()
     

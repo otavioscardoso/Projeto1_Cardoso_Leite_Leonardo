@@ -40,7 +40,7 @@ class Multijogador:
         
         self.titulo = tk.Label(self.window_multijogador)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
-        self.titulo.configure(text = 'MULTIJOGADOR', font='Broadway 64', fg = 'cyan', background='black')
+        self.titulo.configure(text = 'MULTIJOGADOR', font='Broadway 43', fg = 'deep pink', background='black')
 
         self.botao0 = tk.Button(self.window_multijogador)
         self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
@@ -60,11 +60,11 @@ class Multijogador:
         
         self.botaoiniciar = tk.Button(self.window_multijogador)
         self.botaoiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
-        self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16', command = self.botaoiniciar_teste)
+        self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16', command = self.botaoiniciar_teste)
           
         self.botaomenu = tk.Button(self.window_multijogador)
         self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
-        self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')   
+        self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16')   
         
     def botaoiniciar_teste(self):
         self.botaoiniciar.destroy()

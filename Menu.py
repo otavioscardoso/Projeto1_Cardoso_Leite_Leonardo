@@ -3,6 +3,8 @@ import tkinter as tk
 
 from Classico import Classico
 
+from Multijogador import Multijogador
+
 from Ajuda import Ajuda
 
 class Menu:
@@ -39,7 +41,7 @@ class Menu:
          
         self.botao_multi = tk.Button(self.window)
         self.botao_multi.grid(row=2, column=1, columnspan=3, sticky="nsew")
-        self.botao_multi.configure(background = 'deep pink', relief = 'ridge', text="MODO MULTIJOGADOR", borderwidth=6, activebackground = 'green2', font='Broadway 32')
+        self.botao_multi.configure(command =lambda: self.iniciar_menu_multijogador(), background = 'deep pink', relief = 'ridge', text="MODO MULTIJOGADOR", borderwidth=6, activebackground = 'green2', font='Broadway 32')
           
         self.botao_music = tk.Button(self.window)
         self.botao_music.grid(row=3, column=1, columnspan=3, sticky="nsew")
@@ -57,6 +59,12 @@ class Menu:
         print("Clássico")
         self.menu_classico = Classico()
         self.menu_classico.iniciar_classico()
+        
+    def iniciar_menu_multijogador(self):
+        self.quit()
+        print("Multijogador")
+        self.menu_multijogador = Multijogador()
+        self.menu_multijogador.iniciar_multijogador()
         
     def iniciar_menu_ajuda(self):
         self.quit()

@@ -40,7 +40,7 @@ class Multijogador:
         
         self.titulo = tk.Label(self.window_multijogador)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
-        self.titulo.configure(text = 'MULTIJOGADOR', font='Broadway 64', fg = 'cyan', background='black')
+        self.titulo.configure(text = 'MULTIJOGADOR', font='Broadway 43', fg = 'cyan', background='black')
 
         self.botao0 = tk.Button(self.window_multijogador)
         self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
@@ -166,8 +166,6 @@ class Multijogador:
         
         self.window_multijogador.update()
         time.sleep(0.5)
-
-        
          
     def quit(self):
         self.window.destroy()

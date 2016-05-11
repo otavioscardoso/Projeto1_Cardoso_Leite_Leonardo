@@ -2,6 +2,8 @@ import tkinter as tk
 
 from random import randint
 
+import winsound
+
 import time
 
 class Classico:
@@ -26,16 +28,17 @@ class Classico:
         self.window_classico.columnconfigure(4, minsize=100, weight=1)
         self.window_classico.columnconfigure(5, minsize=100, weight=1)
         
-        self.nivel = 0
         self.iniciar = False
         self.cria_jogada=[]
         self.jogada_usuario=[]
         self.botao_clicado = False
         self.tempo = 1
-
+        self.label_pontuacao = tk.StringVar()
+        self.label_pontuacao.set("NÍVEL: 0")
+        
         self.pontos = tk.Label(self.window_classico)
         self.pontos.grid(row=6, column=4, columnspan=2, sticky="nsew")
-        self.pontos.configure(text="NÍVEL: {0}".format(self.nivel), font='Broadway 18', background='black', fg = 'cyan')
+        self.pontos.configure(text="NÍVEL: {0}".format(self.label_pontuacao),textvariable=self.label_pontuacao, font='Broadway 18', background='black', fg = 'cyan')
         
         self.titulo = tk.Label(self.window_classico)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
@@ -64,24 +67,28 @@ class Classico:
         self.botaomenu = tk.Button(self.window_classico)
         self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
         self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')   
-        
+
     def botaoiniciar_teste(self):
         self.botaoiniciar.destroy()        
         self.realiza_jogadas()
     
     def click_botao0(self):
+        winsound.Beep(3000,int(700*self.tempo))
         self.jogada_usuario.append(0)
         self.verifica_jogadas()
         
     def click_botao1(self):
+        winsound.Beep(2500,int(700*self.tempo))       
         self.jogada_usuario.append(1)
         self.verifica_jogadas()
         
     def click_botao2(self):
+        winsound.Beep(2000,int(700*self.tempo))      
         self.jogada_usuario.append(2)
         self.verifica_jogadas()
         
     def click_botao3(self):
+        winsound.Beep(1500,int(700*self.tempo))
         self.jogada_usuario.append(3)
         self.verifica_jogadas()
     
@@ -90,27 +97,35 @@ class Classico:
             if i == 0:
                 self.botao0.configure(background = 'pale goldenrod')
                 self.window_classico.update()
-                time.sleep(self.tempo * 0.70)
+                winsound.Beep(3000,int(700*self.tempo))
+                time.sleep(self.tempo * 0.40)
                 self.botao0.configure(background = 'yellow')
             elif i == 1:
                 self.botao1.configure(background = 'pale green')
                 self.window_classico.update()
-                time.sleep(self.tempo * 0.70)
+                winsound.Beep(2500,int(700*self.tempo))
+                time.sleep(self.tempo * 0.40)
                 self.botao1.configure(background = 'green2')
             elif i == 2:
                 self.botao2.configure(background = 'tomato')
                 self.window_classico.update()
-                time.sleep(self.tempo * 0.70)
+                winsound.Beep(2000,int(700*self.tempo))
+                time.sleep(self.tempo * 0.40)
                 self.botao2.configure(background = 'red')
             elif i == 3:
                 self.botao3.configure(background = 'sky blue')
                 self.window_classico.update()
-                time.sleep(self.tempo * 0.70)
+                winsound.Beep(1500,int(700*self.tempo))
+                time.sleep(self.tempo * 0.40)
                 self.botao3.configure(background = 'blue')
             self.window_classico.update()
             time.sleep(self.tempo)
         
     def realiza_jogadas(self):
+        self.nivel = str(len(self.cria_jogada))
+        self.label_pontuacao.set("NÍVEL: {0}".format(self.nivel))
+        print(self.nivel)
+        self.pontos.update()
         print ("realiza jogadas")
         self.cria_jogada.append(randint(0,3))
         print(self.cria_jogada)
@@ -129,7 +144,6 @@ class Classico:
             time.sleep(1)
             self.tempo = self.tempo * 0.90
             print(self.tempo)
-            self.nivel += 1
             self.jogada_usuario = []
             self.realiza_jogadas()
     
@@ -148,6 +162,8 @@ class Classico:
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
 
     def botaoreiniciar_teste(self):
+        self.botaoreiniciar.destroy()
+        
         self.botao0 = tk.Button(self.window_classico)
         self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
         self.botao0.configure(activebackground = 'pale goldenrod', background = 'yellow', borderwidth=12, command = self.click_botao0)

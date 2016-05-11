@@ -31,12 +31,19 @@ class Ajuda:
         Neste tipo do jogo o Genius fará uma sequência e o objetivo do\n\
         usuário é conseguir memorizá-la e repeti-la. Tal sequência inicia\n\
         com apenas um botão a ser apertado e continua aumentando de\n\
-        um em um até que o usuário a erre.\n\n\n\
+        um em um até que o usuário a erre. O nível atingido pelo\n\
+        usuário é igual ao número de elementos da sequência que\n\
+        ele conseguiu memorizar.\n\n\n\
         Modo Multijogador: \n\
         Este modo faz com que dois jogadores possam jogar ao mesmo\n\
-        tempo. A dinâmica deste jogo funciona da mesma forma que o\n\
-        modo clássico, porém, os jogadores intercalam suas jogadas,\n\
-        de forma que cada jogador realiza sua jogada a cada 2 niveis.\n\n\n\
+        tempo. A dinâmica deste jogo funciona da seguinte forma:\n\
+        o primeiro jogador ecolhe um botão para iniciar o jogo. Em\n\
+        seguida, o segundo jogador deverá apertar o primeiro botão\n\
+        e adicionar mais um a sua escolha. Quando a vez volta ao\n\
+        primeiro jogador, ele deverá apertar o seu botão, o botão\n\
+        escolhido pelo segundo jogador e mais um a sua escolha. E\n\
+        assim o jogo continua sucessivamente até algum dos dois\n\
+        errar a sequência.\n\n\n\
         Modo Música: \n\
         A definir', fg = 'DarkOrange1', font='Broadway 12', background='black')
         

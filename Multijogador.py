@@ -1,6 +1,6 @@
 import tkinter as tk
 
-import time
+import winsound
 
 class Multijogador:
     def __init__(self):
@@ -24,19 +24,19 @@ class Multijogador:
         self.window_multijogador.columnconfigure(4, minsize=100, weight=1)
         self.window_multijogador.columnconfigure(5, minsize=100, weight=1)
         
-        self.nivel = 0
+        self.rodada = 0
+        self.muda_jogador = 0
         self.iniciar = False
-        self.cria_jogada=[]
-        self.jogada_usuario=[]
         self.botao_clicado = False
-        self.tempo = 1
         self.numero_botao = 0
         self.lista_real=[]
         self.lista_jogador=[]
+        self.label_jogador = tk.StringVar()
+        self.label_jogador.set("JOGADOR: 1")
 
-        self.pontos = tk.Label(self.window_multijogador)
-        self.pontos.grid(row=6, column=4, columnspan=2, sticky="nsew")
-        self.pontos.configure(text="NÍVEL: {0}".format(self.nivel), font='Broadway 18', background='black', fg = 'cyan')
+        self.label_vez_jogador = tk.Label(self.window_multijogador)
+        self.label_vez_jogador.grid(row=6, column=4, columnspan=2, sticky="nsew")
+        self.label_vez_jogador.configure(text="JOGADOR: {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
         
         self.titulo = tk.Label(self.window_multijogador)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
@@ -52,104 +52,144 @@ class Multijogador:
           
         self.botao2 = tk.Button(self.window_multijogador)
         self.botao2.grid(row=1, column=3, columnspan=2, rowspan=2, sticky="nsew")
-        self.botao2.configure(activebackground = 'tomato', background = 'red', borderwidth=12, command = self.click_botao2)
+        self.botao2.configure(activebackground = 'coral1', background = 'red', borderwidth=12, command = self.click_botao2)
 
         self.botao3 = tk.Button(self.window_multijogador)
         self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
         self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
-        
-        self.botaoiniciar = tk.Button(self.window_multijogador)
-        self.botaoiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
-        self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16', command = self.botaoiniciar_teste)
           
         self.botaomenu = tk.Button(self.window_multijogador)
         self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
         self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16')   
-        
-    def botaoiniciar_teste(self):
-        self.botaoiniciar.destroy()
-        self.piscar()        
-    
+          
+    def vez_jogador(self):
+        if self.lista_real == self.lista_jogador == []:
+            self.label_jogador.set("JOGADOR: {0}".format(1))
+        if self.muda_jogador % 2 == 0:
+            self.label_jogador.set("JOGADOR: {0}".format(2))
+        else:
+            self.label_jogador.set("JOGADOR: {0}".format(1))
+
     def click_botao0(self):
-        while len(self.lista_real)>len(self.lista_jogador):
+        if len(self.lista_real)==len(self.lista_jogador):
+            self.lista_real.append(0)
+            self.lista_jogador = []
+            self.rodada = 0
+            self.vez_jogador()
+            self.muda_jogador += 1
+            print("lista real {0}".format(self.lista_real))
+        elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(0)
             self.verifica_jogadas()
-        self.lista_real.append(0)
+            print("lista jogador {0}".format(self.lista_jogador))
+            print("lista real {0}".format(self.lista_real))
+        winsound.Beep(3000, 500)
         
     def click_botao1(self):
-        while len(self.lista_real)>len(self.lista_jogador):
+        if len(self.lista_real)==len(self.lista_jogador):
+            self.lista_real.append(1)
+            self.lista_jogador = []
+            self.rodada = 0
+            self.vez_jogador()
+            self.muda_jogador += 1
+            print("lista real {0}".format(self.lista_real))
+        elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(1)
             self.verifica_jogadas()
-        self.lista_real.append(1)
+            print("lista jogador {0}".format(self.lista_jogador))
+            print("lista real {0}".format(self.lista_real))
+        winsound.Beep(2500,500)   
         
     def click_botao2(self):
-        while len(self.lista_real)>len(self.lista_jogador):
+        if len(self.lista_real)==len(self.lista_jogador):
+            self.lista_real.append(2)
+            self.lista_jogador = []
+            self.rodada = 0
+            self.vez_jogador()
+            self.muda_jogador += 1
+            print("lista real {0}".format(self.lista_real))
+        elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(2)
             self.verifica_jogadas()
-        self.lista_real.append(2)
-        
+            print("lista jogador {0}".format(self.lista_jogador))
+            print("lista real {0}".format(self.lista_real))
+        winsound.Beep(2000,500) 
+
     def click_botao3(self):
-        while len(self.lista_real)>len(self.lista_jogador):
-             self.lista_jogador.append(3)
-             self.verifica_jogadas()
-        self.lista_real.append(3)
+        if len(self.lista_real)==len(self.lista_jogador):
+            self.lista_real.append(3)
+            self.lista_jogador = []
+            self.rodada = 0
+            self.vez_jogador()
+            self.muda_jogador += 1
+            print("lista real {0}".format(self.lista_real))
+        elif len(self.lista_real)>len(self.lista_jogador):
+            self.lista_jogador.append(3)
+            self.verifica_jogadas()
+            print("lista jogador {0}".format(self.lista_jogador))
+            print("lista real {0}".format(self.lista_real))
+        winsound.Beep(1500,500)
     
-    def piscar(self):
+    """def piscar(self):
         for i in self.lista_real:
             if i == 0:
                 self.botao0.configure(background = 'pale goldenrod')
                 self.window_multijogador.update()
-                time.sleep(self.tempo * 0.70)
+                time.sleep(0.5)
                 self.botao0.configure(background = 'yellow')
             elif i == 1:
                 self.botao1.configure(background = 'pale green')
                 self.window_multijogador.update()
-                time.sleep(self.tempo * 0.70)
+                time.sleep(0.5)
                 self.botao1.configure(background = 'green2')
             elif i == 2:
-                self.botao2.configure(background = 'tomato')
+                self.botao2.configure(background = 'coral1')
                 self.window_multijogador.update()
-                time.sleep(self.tempo * 0.70)
+                time.sleep(0.5)
                 self.botao2.configure(background = 'red')
             elif i == 3:
                 self.botao3.configure(background = 'sky blue')
                 self.window_multijogador.update()
-                time.sleep(self.tempo * 0.70)
+                time.sleep(0.5)
                 self.botao3.configure(background = 'blue')
             self.window_multijogador.update()
-            time.sleep(self.tempo)
+            time.sleep(0.5)"""
             
     def verifica_jogadas(self):
-        if self.lista_jogador[self.numero_botao] != self.lista_real[self.numero_botao]:
+        if self.lista_jogador[self.rodada] != self.lista_real[self.rodada]:
+            print(self.lista_jogador)
+            print(self.lista_real)            
+            print("Errou") #dletar depois        
             self.lista_real = []
             self.lista_jogador = []
             self.erro()
-            print("Errou")
-        self.numero_botao += 1
+        print("Jogada correta")
+        print(self.rodada)
+        self.rodada += 1
+        print(self.rodada)
         self.window_multijogador.update()
-        if self.numero_botao == len(self.lista_real):  
-            time.sleep(1)
-            self.tempo = self.tempo * 0.90
-            print(self.tempo)
-            self.nivel += 1
-            self.jogada_usuario = []
-            self.piscar()
     
     def erro(self):
-        self.tempo = 1
+        
         self.botao0.destroy()
         self.botao1.destroy()
         self.botao2.destroy()
         self.botao3.destroy()
-        self.perdeu = tk.Label(self.window_multijogador)
-        self.perdeu.grid(row=1, column=1, columnspan=4, rowspan=4, sticky="nsew")
-        self.perdeu.configure(text="VOCÊ PERDEU...", font='Broadway 42', background='black', fg = 'cyan')
         self.botaoreiniciar = tk.Button(self.window_multijogador)
         self.botaoreiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
-        self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')
+        self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16')
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
-
+        self.perdeu = tk.Label(self.window_multijogador)
+        self.perdeu.grid(row=1, column=1, columnspan=4, rowspan=4, sticky="nsew")
+        self.label_vez_jogador.destroy()
+        if self.muda_jogador % 2 == 0:
+            self.perdeu.configure(text="1 PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
+        else:
+            self.perdeu.configure(text="2 PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
+        self.muda_jogador = 0
+         
     def botaoreiniciar_teste(self):
+        self.botaoreiniciar.destroy()
         self.botao0 = tk.Button(self.window_multijogador)
         self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")
         self.botao0.configure(activebackground = 'pale goldenrod', background = 'yellow', borderwidth=12, command = self.click_botao0)
@@ -166,12 +206,16 @@ class Multijogador:
         self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
         self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
         
-        self.window_multijogador.update()
-        time.sleep(0.5)
-        self.piscar()
-
+        self.label_jogador = tk.StringVar()
+        self.label_jogador.set("JOGADOR: 1")
+        self.muda_jogador = 0
         
-         
+        self.label_vez_jogador = tk.Label(self.window_multijogador)
+        self.label_vez_jogador.grid(row=6, column=4, columnspan=2, sticky="nsew")
+        self.label_vez_jogador.configure(text="JOGADOR: {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
+        
+        self.window_multijogador.update()
+                 
     def quit(self):
         self.window.destroy()
   

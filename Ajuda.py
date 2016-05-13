@@ -19,15 +19,16 @@ class Ajuda:
         self.window_ajuda.columnconfigure(1, minsize=100, weight=1)
         self.window_ajuda.columnconfigure(2, minsize=100, weight=1)
         self.window_ajuda.columnconfigure(3, minsize=100, weight=1)
-        self.window_ajuda.columnconfigure(4, minsize=50, weight=1)        
+        self.window_ajuda.columnconfigure(4, minsize=100, weight=1) 
+        self.window_ajuda.columnconfigure(5, minsize=50, weight=1)
         
         self.voltar = tk.Button(self.window_ajuda)
         self.voltar.grid(row=5, column=0, rowspan=2, columnspan=2, sticky="nsew")
         self.voltar.configure(text="MENU", font='Broadway 16', fg = "DarkOrange1", background = "black", activebackground = 'green2', relief = 'ridge', borderwidth=6)
         
-        self.titulo = tk.Label(self.window_ajuda)
-        self.titulo.grid(row=2, column=0, columnspan=6, sticky="nsew")
-        self.titulo.configure(text = 'Modo Simples:\n\
+        self.regras = tk.Label(self.window_ajuda)
+        self.regras.grid(row=2, column=0, columnspan=6, sticky="nsew")
+        self.regras.configure(text = 'Modo Simples:\n\
         Neste tipo do jogo o Genius fará uma sequência e o objetivo do\n\
         usuário é conseguir memorizá-la e repeti-la. Tal sequência inicia\n\
         com apenas um botão a ser apertado e continua aumentando de\n\
@@ -41,7 +42,7 @@ class Ajuda:
         A definir', fg = 'DarkOrange1', font='Broadway 12', background='black')
         
         self.titulo = tk.Label(self.window_ajuda)
-        self.titulo.grid(row=0, column=2, sticky="nsew")
+        self.titulo.grid(row=0, column=1, columnspan = 4, sticky="nsew")
         self.titulo.configure(text = 'AJUDA', fg = 'DarkOrange1', font='Broadway 64', background='black')
         
     def iniciar_ajuda(self):

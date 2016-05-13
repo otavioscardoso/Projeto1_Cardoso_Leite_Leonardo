@@ -21,18 +21,19 @@ class Classico:
         self.window_classico.rowconfigure(5, minsize=10, weight=1)
         self.window_classico.rowconfigure(6, minsize=10, weight=1)
         
-        self.window_classico.columnconfigure(0, minsize=100, weight=1)
+        self.window_classico.columnconfigure(0, minsize=50, weight=1)
         self.window_classico.columnconfigure(1, minsize=100, weight=1)
         self.window_classico.columnconfigure(2, minsize=100, weight=1)
         self.window_classico.columnconfigure(3, minsize=100, weight=1)
         self.window_classico.columnconfigure(4, minsize=100, weight=1)
-        self.window_classico.columnconfigure(5, minsize=100, weight=1)
+        self.window_classico.columnconfigure(5, minsize=50, weight=1)
         
         self.iniciar = False
+        self.botao_clicado = False
         self.cria_jogada=[]
         self.jogada_usuario=[]
-        self.botao_clicado = False
         self.tempo = 1
+        self.numero_botao = 0
         self.label_pontuacao = tk.StringVar()
         self.label_pontuacao.set("NÍVEL: 0")
         
@@ -107,7 +108,7 @@ class Classico:
                 time.sleep(self.tempo * 0.40)
                 self.botao1.configure(background = 'green2')
             elif i == 2:
-                self.botao2.configure(background = 'tomato')
+                self.botao2.configure(background = 'coral1')
                 self.window_classico.update()
                 winsound.Beep(2000,int(700*self.tempo))
                 time.sleep(self.tempo * 0.40)
@@ -119,9 +120,7 @@ class Classico:
                 time.sleep(self.tempo * 0.40)
                 self.botao3.configure(background = 'blue')
             self.window_classico.update()
-            for j in range(len(self.cria_jogada)):
-                if j < len(self.cria_jogada) - 1:
-                    time.sleep(self.tempo)
+            time.sleep(self.tempo)
         
     def realiza_jogadas(self):
         self.botao0.configure(state = 'disabled')
@@ -178,7 +177,7 @@ class Classico:
           
         self.botao2 = tk.Button(self.window_classico)
         self.botao2.grid(row=1, column=3, columnspan=2, rowspan=2, sticky="nsew")
-        self.botao2.configure(activebackground = 'tomato', background = 'red', borderwidth=12, command = self.click_botao2)
+        self.botao2.configure(activebackground = 'coral1', background = 'red', borderwidth=12, command = self.click_botao2)
 
         self.botao3 = tk.Button(self.window_classico)
         self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")

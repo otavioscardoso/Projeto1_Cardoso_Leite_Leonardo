@@ -46,7 +46,7 @@ class Ajuda:
         assim o jogo continua sucessivamente até algum dos dois\n\
         errar a sequência.\n\n\n\
         Modo Música: \n\
-        A definir', fg = 'DarkOrange1', font='Broadway 12', background='black')
+        A definir', fg = 'DarkOrange1', font='Broadway 9', background='black')
         
         self.titulo = tk.Label(self.window_ajuda)
         self.titulo.grid(row=0, column=1, columnspan = 4, sticky="nsew")

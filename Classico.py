@@ -83,8 +83,8 @@ class Classico:
         self.jogada_usuario.append(1)
         self.verifica_jogadas()
         
-    def click_botao2(self):
-        winsound.Beep(2000,int(700*self.tempo))      
+    def click_botao2(self): 
+        winsound.Beep(2000,int(700*self.tempo)) 
         self.jogada_usuario.append(2)
         self.verifica_jogadas()
         
@@ -94,33 +94,34 @@ class Classico:
         self.verifica_jogadas()
     
     def piscar(self):
-        for i in self.cria_jogada:
-            if i == 0:
+        for i in range (len(self.cria_jogada)):
+            if self.cria_jogada[i] == 0:
                 self.botao0.configure(background = 'pale goldenrod')
                 self.window_classico.update()
                 winsound.Beep(3000,int(700*self.tempo))
                 time.sleep(self.tempo * 0.40)
                 self.botao0.configure(background = 'yellow')
-            elif i == 1:
+            elif self.cria_jogada[i] == 1:
                 self.botao1.configure(background = 'pale green')
                 self.window_classico.update()
                 winsound.Beep(2500,int(700*self.tempo))
                 time.sleep(self.tempo * 0.40)
                 self.botao1.configure(background = 'green2')
-            elif i == 2:
+            elif self.cria_jogada[i] == 2:
                 self.botao2.configure(background = 'coral1')
                 self.window_classico.update()
                 winsound.Beep(2000,int(700*self.tempo))
                 time.sleep(self.tempo * 0.40)
                 self.botao2.configure(background = 'red')
-            elif i == 3:
+            elif self.cria_jogada[i] == 3:
                 self.botao3.configure(background = 'sky blue')
                 self.window_classico.update()
                 winsound.Beep(1500,int(700*self.tempo))
                 time.sleep(self.tempo * 0.40)
                 self.botao3.configure(background = 'blue')
             self.window_classico.update()
-            time.sleep(self.tempo)
+            if i != (len(self.cria_jogada) - 1):
+                time.sleep(self.tempo)
         
     def realiza_jogadas(self):
         self.botao0.configure(state = 'disabled')
@@ -151,6 +152,7 @@ class Classico:
             self.realiza_jogadas()
     
     def erro(self):
+        winsound.PlaySound('Fail',winsound.SND_FILENAME)
         self.tempo = 1
         self.botao0.destroy()
         self.botao1.destroy()
@@ -163,7 +165,7 @@ class Classico:
         self.botaoreiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
         self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
-
+        
     def botaoreiniciar_teste(self):
         self.botaoreiniciar.destroy()
         

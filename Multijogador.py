@@ -32,11 +32,11 @@ class Multijogador:
         self.lista_real=[]
         self.lista_jogador=[]
         self.label_jogador = tk.StringVar()
-        self.label_jogador.set("JOGADOR: 1")
+        self.label_jogador.set("VEZ DE : JOGADOR 1")
 
         self.label_vez_jogador = tk.Label(self.window_multijogador)
-        self.label_vez_jogador.grid(row=6, column=4, columnspan=2, sticky="nsew")
-        self.label_vez_jogador.configure(text="JOGADOR: {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
+        self.label_vez_jogador.grid(row=6, column=2, columnspan=4, sticky="nsew")
+        self.label_vez_jogador.configure(text="VEZ DE : JOGADOR {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
         
         self.titulo = tk.Label(self.window_multijogador)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
@@ -63,114 +63,67 @@ class Multijogador:
         self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16')   
           
     def vez_jogador(self):
-        if self.lista_real == self.lista_jogador == []:
-            self.label_jogador.set("JOGADOR: {0}".format(1))
         if self.muda_jogador % 2 == 0:
-            self.label_jogador.set("JOGADOR: {0}".format(2))
+            self.label_jogador.set("VEZ DE : JOGADOR {0}".format(2))
         else:
-            self.label_jogador.set("JOGADOR: {0}".format(1))
+            self.label_jogador.set("VEZ DE : JOGADOR {0}".format(1))
 
     def click_botao0(self):
+        winsound.Beep(3000, 500)
         if len(self.lista_real)==len(self.lista_jogador):
             self.lista_real.append(0)
             self.lista_jogador = []
             self.rodada = 0
             self.vez_jogador()
             self.muda_jogador += 1
-            print("lista real {0}".format(self.lista_real))
         elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(0)
             self.verifica_jogadas()
-            print("lista jogador {0}".format(self.lista_jogador))
-            print("lista real {0}".format(self.lista_real))
-        winsound.Beep(3000, 500)
         
     def click_botao1(self):
+        winsound.Beep(2500,500) 
         if len(self.lista_real)==len(self.lista_jogador):
             self.lista_real.append(1)
             self.lista_jogador = []
             self.rodada = 0
             self.vez_jogador()
             self.muda_jogador += 1
-            print("lista real {0}".format(self.lista_real))
         elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(1)
-            self.verifica_jogadas()
-            print("lista jogador {0}".format(self.lista_jogador))
-            print("lista real {0}".format(self.lista_real))
-        winsound.Beep(2500,500)   
+            self.verifica_jogadas()  
         
     def click_botao2(self):
+        winsound.Beep(2000,500) 
         if len(self.lista_real)==len(self.lista_jogador):
             self.lista_real.append(2)
             self.lista_jogador = []
             self.rodada = 0
             self.vez_jogador()
             self.muda_jogador += 1
-            print("lista real {0}".format(self.lista_real))
         elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(2)
             self.verifica_jogadas()
-            print("lista jogador {0}".format(self.lista_jogador))
-            print("lista real {0}".format(self.lista_real))
-        winsound.Beep(2000,500) 
 
     def click_botao3(self):
+        winsound.Beep(1500,500)
         if len(self.lista_real)==len(self.lista_jogador):
             self.lista_real.append(3)
             self.lista_jogador = []
             self.rodada = 0
             self.vez_jogador()
             self.muda_jogador += 1
-            print("lista real {0}".format(self.lista_real))
         elif len(self.lista_real)>len(self.lista_jogador):
             self.lista_jogador.append(3)
             self.verifica_jogadas()
-            print("lista jogador {0}".format(self.lista_jogador))
-            print("lista real {0}".format(self.lista_real))
-        winsound.Beep(1500,500)
-    
-    """def piscar(self):
-        for i in self.lista_real:
-            if i == 0:
-                self.botao0.configure(background = 'pale goldenrod')
-                self.window_multijogador.update()
-                time.sleep(0.5)
-                self.botao0.configure(background = 'yellow')
-            elif i == 1:
-                self.botao1.configure(background = 'pale green')
-                self.window_multijogador.update()
-                time.sleep(0.5)
-                self.botao1.configure(background = 'green2')
-            elif i == 2:
-                self.botao2.configure(background = 'coral1')
-                self.window_multijogador.update()
-                time.sleep(0.5)
-                self.botao2.configure(background = 'red')
-            elif i == 3:
-                self.botao3.configure(background = 'sky blue')
-                self.window_multijogador.update()
-                time.sleep(0.5)
-                self.botao3.configure(background = 'blue')
-            self.window_multijogador.update()
-            time.sleep(0.5)"""
             
     def verifica_jogadas(self):
-        if self.lista_jogador[self.rodada] != self.lista_real[self.rodada]:
-            print(self.lista_jogador)
-            print(self.lista_real)            
-            print("Errou") #dletar depois        
+        if self.lista_jogador[self.rodada] != self.lista_real[self.rodada]:     
             self.lista_real = []
             self.lista_jogador = []
             self.erro()
-        print("Jogada correta")
-        print(self.rodada)
         self.rodada += 1
-        print(self.rodada)
-        self.window_multijogador.update()
     
     def erro(self):
-        
         self.botao0.destroy()
         self.botao1.destroy()
         self.botao2.destroy()
@@ -183,11 +136,12 @@ class Multijogador:
         self.perdeu.grid(row=1, column=1, columnspan=4, rowspan=4, sticky="nsew")
         self.label_vez_jogador.destroy()
         if self.muda_jogador % 2 == 0:
-            self.perdeu.configure(text="1 PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
+            self.perdeu.configure(text="JOGADOR 1\n PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
         else:
-            self.perdeu.configure(text="2 PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
+            self.perdeu.configure(text="JOGADOR 2\n PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
         self.muda_jogador = 0
-         
+        winsound.PlaySound('Fail',winsound.SND_FILENAME)
+        
     def botaoreiniciar_teste(self):
         self.botaoreiniciar.destroy()
         self.botao0 = tk.Button(self.window_multijogador)
@@ -207,14 +161,12 @@ class Multijogador:
         self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
         
         self.label_jogador = tk.StringVar()
-        self.label_jogador.set("JOGADOR: 1")
+        self.label_jogador.set("VEZ DE : JOGADOR 1")
         self.muda_jogador = 0
         
         self.label_vez_jogador = tk.Label(self.window_multijogador)
-        self.label_vez_jogador.grid(row=6, column=4, columnspan=2, sticky="nsew")
-        self.label_vez_jogador.configure(text="JOGADOR: {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
-        
-        self.window_multijogador.update()
+        self.label_vez_jogador.grid(row=6, column=2, columnspan=4, sticky="nsew")
+        self.label_vez_jogador.configure(text="VEZ DE : JOGADOR {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
                  
     def quit(self):
         self.window.destroy()

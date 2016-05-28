@@ -35,9 +35,9 @@ class Multijogador:
         self.label_jogador.set("VEZ DE : JOGADOR 1")
 
         self.label_vez_jogador = tk.Label(self.window_multijogador)
-        self.label_vez_jogador.grid(row=6, column=2, columnspan=4, sticky="nsew")
-        self.label_vez_jogador.configure(text="VEZ DE : JOGADOR {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
-        
+        self.label_vez_jogador.grid(row=6, column=2, columnspan=2, sticky="nsew")
+        self.label_vez_jogador.configure(textvariable=self.label_jogador, font='Broadway 17', background='black', fg = 'deep pink')
+                
         self.titulo = tk.Label(self.window_multijogador)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
         self.titulo.configure(text = 'MULTIJOGADOR', font='Broadway 43', fg = 'deep pink', background='black')
@@ -57,16 +57,13 @@ class Multijogador:
         self.botao3 = tk.Button(self.window_multijogador)
         self.botao3.grid(row=3, column=3, columnspan=2, rowspan=2, sticky="nsew")
         self.botao3.configure(activebackground = 'sky blue', background = 'blue', borderwidth=12, command = self.click_botao3)
-          
-        self.botaomenu = tk.Button(self.window_multijogador)
-        self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
-        self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'deep pink', font='Broadway 16')   
-          
+                 
     def vez_jogador(self):
         if self.muda_jogador % 2 == 0:
             self.label_jogador.set("VEZ DE : JOGADOR {0}".format(2))
         else:
             self.label_jogador.set("VEZ DE : JOGADOR {0}".format(1))
+        
 
     def click_botao0(self):
         winsound.Beep(3000, 500)
@@ -165,9 +162,13 @@ class Multijogador:
         self.muda_jogador = 0
         
         self.label_vez_jogador = tk.Label(self.window_multijogador)
-        self.label_vez_jogador.grid(row=6, column=2, columnspan=4, sticky="nsew")
-        self.label_vez_jogador.configure(text="VEZ DE : JOGADOR {0}".format(self.label_jogador),textvariable=self.label_jogador, font='Broadway 18', background='black', fg = 'deep pink')
-                 
+        self.label_vez_jogador.grid(row=6, column=2, columnspan=2, sticky="nsew")
+        self.label_vez_jogador.configure(textvariable=self.label_jogador, font='Broadway 17', background='black', fg = 'deep pink')
+    
+    def voltar_menu(self):
+        self.window_multijogador.destroy()
+        self.menu.window.deiconify()
+             
     def quit(self):
         self.window.destroy()
   

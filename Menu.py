@@ -6,6 +6,8 @@ from Multijogador import Multijogador
 
 from Ajuda import Ajuda
 
+from Musica import Musica
+
 class Menu:
 
     def __init__(self):
@@ -43,34 +45,31 @@ class Menu:
           
         self.botao_music = tk.Button(self.window)
         self.botao_music.grid(row=3, column=1, columnspan=4, sticky="nsew")
-        self.botao_music.configure(background = 'purple1', relief = 'ridge', text="MODO MÚSICA", borderwidth=6, activebackground = 'green2', font='Broadway 32')
+        self.botao_music.configure(command =lambda: self.iniciar_menu_musica(), background = 'purple1', relief = 'ridge', text="MODO MÚSICA", borderwidth=6, activebackground = 'green2', font='Broadway 32')
 
         self.botao_ajuda = tk.Button(self.window)
         self.botao_ajuda.grid(row=4, column=1, columnspan=4, sticky="nsew")
         self.botao_ajuda.configure(command =lambda: self.iniciar_menu_ajuda(), background = 'DarkOrange1', relief = 'ridge', text="AJUDA ?", borderwidth=6, activebackground = 'green2', font='Broadway 32')
         
     def iniciar_menu_classico(self):
-        self.quit()
         self.menu_classico = Classico()
         self.menu_classico.iniciar_classico()
-        
+
     def iniciar_menu_multijogador(self):
-        self.quit()
         self.menu_multijogador = Multijogador()
         self.menu_multijogador.iniciar_multijogador()
         
     def iniciar_menu_ajuda(self):
-        self.quit()
         self.menu_ajuda = Ajuda()
         self.menu_ajuda.iniciar_ajuda()
         
-    def quit(self):
-        self.window.destroy()
+    def iniciar_menu_musica(self):
+        self.menu_musica = Musica()
+        self.menu_musica.iniciar_musica()
   
     def iniciar_menu(self):
         self.window.mainloop() 
 
+
 menu = Menu()
-
-
 menu.iniciar_menu()

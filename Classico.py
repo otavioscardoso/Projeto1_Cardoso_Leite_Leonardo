@@ -34,12 +34,12 @@ class Classico:
         self.jogada_usuario=[]
         self.tempo = 1
         self.numero_botao = 0
-        self.label_pontuacao = tk.StringVar()
-        self.label_pontuacao.set("NÍVEL: 0")
+        self.label_pontuacao_classico = tk.StringVar()
+        self.label_pontuacao_classico.set("NÍVEL: 1")
         
-        self.pontos = tk.Label(self.window_classico)
-        self.pontos.grid(row=6, column=4, columnspan=2, sticky="nsew")
-        self.pontos.configure(text="NÍVEL: {0}".format(self.label_pontuacao),textvariable=self.label_pontuacao, font='Broadway 18', background='black', fg = 'cyan')
+        self.pontos_classico = tk.Label(self.window_classico)
+        self.pontos_classico.grid(row=6, column=4, columnspan=2, sticky="nsew")
+        self.pontos_classico.configure(textvariable=self.label_pontuacao_classico,font='Broadway 18', background='black', fg = 'cyan')
         
         self.titulo = tk.Label(self.window_classico)
         self.titulo.grid(row=0, column=1, columnspan=4, sticky="nsew")
@@ -65,10 +65,6 @@ class Classico:
         self.botaoiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
         self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16', command = self.botaoiniciar_teste)
           
-        self.botaomenu = tk.Button(self.window_classico)
-        self.botaomenu.grid(row=6, column=0, columnspan = 2, sticky="nsew")
-        self.botaomenu.configure(relief = 'ridge', text="MENU", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16')   
-
     def botaoiniciar_teste(self):
         self.botaoiniciar.destroy()        
         self.realiza_jogadas()
@@ -128,8 +124,9 @@ class Classico:
         self.botao1.configure(state = 'disabled')
         self.botao2.configure(state = 'disabled')
         self.botao3.configure(state = 'disabled')
-        self.nivel = str(len(self.cria_jogada))
-        self.label_pontuacao.set("NÍVEL: {0}".format(self.nivel))
+        self.nivel = str(len(self.cria_jogada) + 1)
+        self.label_pontuacao_classico.set("NÍVEL: {0}".format(self.nivel))
+        print(self.label_pontuacao_classico.get())
         self.cria_jogada.append(randint(0,3))
         self.piscar()
         self.numero_botao = 0
@@ -188,11 +185,7 @@ class Classico:
         self.window_classico.update()
         time.sleep(0.5)
         self.realiza_jogadas()
-        
-         
-    def quit(self):
-        self.window.destroy()
+    
   
     def iniciar_classico(self):
-        self.window_classico.mainloop() 
-
+        self.window_classico.mainloop()

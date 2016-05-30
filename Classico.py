@@ -64,7 +64,7 @@ class Classico:
         self.botaoiniciar = tk.Button(self.window_classico)
         self.botaoiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
         self.botaoiniciar.configure(relief = 'ridge', text="INICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'cyan', font='Broadway 16', command = self.botaoiniciar_teste)
-          
+
     def botaoiniciar_teste(self):
         self.botaoiniciar.destroy()        
         self.realiza_jogadas()
@@ -126,7 +126,6 @@ class Classico:
         self.botao3.configure(state = 'disabled')
         self.nivel = str(len(self.cria_jogada) + 1)
         self.label_pontuacao_classico.set("NÍVEL: {0}".format(self.nivel))
-        print(self.label_pontuacao_classico.get())
         self.cria_jogada.append(randint(0,3))
         self.piscar()
         self.numero_botao = 0

@@ -115,26 +115,18 @@ class Musica:
     def escolher_musica0(self):
         self.musica_escolhida = 0
         self.verificar_musica_escolhida()
-        print(self.musica_escolhida)
-        print(self.musica_tocando)
         
     def escolher_musica1(self):
         self.musica_escolhida = 1
         self.verificar_musica_escolhida()
-        print(self.musica_escolhida)
-        print(self.musica_tocando)
-  
+        
     def escolher_musica2(self):
         self.musica_escolhida = 2
         self.verificar_musica_escolhida()
-        print(self.musica_escolhida)
-        print(self.musica_tocando)
   
     def escolher_musica3(self):
         self.musica_escolhida = 3
         self.verificar_musica_escolhida()
-        print(self.musica_escolhida)
-        print(self.musica_tocando)
         
     def verificar_musica_escolhida(self):
         if self.musica_escolhida == self.musica_tocando:
@@ -256,6 +248,7 @@ class Musica:
     
     def erro(self):
         winsound.PlaySound(None,winsound.SND_ASYNC)
+        winsound.PlaySound('Fail',winsound.SND_FILENAME)
         self.tempo = 1
         if len(self.cria_jogada)%3 == 0 and len(self.cria_jogada) > 0:
             self.pergunta.destroy()
@@ -275,21 +268,7 @@ class Musica:
         self.botaoreiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
         self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'purple1', font='Broadway 16')
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
-        
-    def acerto(self):
-        self.tempo = 1
-        self.botao0.destroy()
-        self.botao1.destroy()
-        self.botao2.destroy()
-        self.botao3.destroy()
-        self.venceu = tk.Label(self.window_musica)
-        self.venceu.grid(row=1, column=1, columnspan=4, rowspan=4, sticky="nsew")
-        self.venceu.configure(text="Parabéns, você venceu em x niveis", font='Broadway 42', background='black', fg = 'purple1')
-        self.botaoreiniciar = tk.Button(self.window_musica)
-        self.botaoreiniciar.grid(row=6, column=2, columnspan = 2, sticky="nsew")
-        self.botaoreiniciar.configure(relief = 'ridge', text="REINICIAR", borderwidth=6, activebackground = 'green2', background='black', fg = 'purple1', font='Broadway 16')
-        self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
-        
+                
     def botaoreiniciar_teste(self):
         self.botaoreiniciar.destroy()
         

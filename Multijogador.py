@@ -168,9 +168,6 @@ class Multijogador:
     def voltar_menu(self):
         self.window_multijogador.destroy()
         self.menu.window.deiconify()
-             
-    def quit(self):
-        self.window.destroy()
   
     def iniciar_multijogador(self):
         self.window_multijogador.mainloop() 

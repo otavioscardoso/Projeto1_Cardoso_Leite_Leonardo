@@ -248,7 +248,7 @@ class Musica:
     
     def erro(self):
         winsound.PlaySound(None,winsound.SND_ASYNC)
-        winsound.PlaySound('Fail',winsound.SND_FILENAME)
+        winsound.PlaySound('Fail',winsound.SND_ASYNC)
         self.tempo = 1
         if len(self.cria_jogada)%3 == 0 and len(self.cria_jogada) > 0:
             self.pergunta.destroy()
@@ -270,6 +270,7 @@ class Musica:
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
                 
     def botaoreiniciar_teste(self):
+        winsound.PlaySound(None,winsound.SND_ASYNC)
         self.botaoreiniciar.destroy()
         
         self.botao0 = tk.Button(self.window_musica)

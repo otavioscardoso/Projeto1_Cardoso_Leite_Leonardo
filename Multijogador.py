@@ -137,9 +137,10 @@ class Multijogador:
         else:
             self.perdeu.configure(text="JOGADOR 2\n PERDEU...", font='Broadway 42', background='black', fg = 'deep pink')
         self.muda_jogador = 0
-        winsound.PlaySound('Fail',winsound.SND_FILENAME)
+        winsound.PlaySound('Fail',winsound.SND_ASYNC)
         
     def botaoreiniciar_teste(self):
+        winsound.PlaySound(None,winsound.SND_ASYNC)
         self.botaoreiniciar.destroy()
         self.botao0 = tk.Button(self.window_multijogador)
         self.botao0.grid(row=1, column=1, columnspan=2, rowspan=2, sticky="nsew")

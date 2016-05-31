@@ -148,7 +148,7 @@ class Classico:
             self.realiza_jogadas()
     
     def erro(self):
-        winsound.PlaySound('Fail',winsound.SND_FILENAME)
+        winsound.PlaySound('Fail',winsound.SND_ASYNC)
         self.tempo = 1
         self.botao0.destroy()
         self.botao1.destroy()
@@ -163,6 +163,7 @@ class Classico:
         self.botaoreiniciar.configure(command =lambda: self.botaoreiniciar_teste())
         
     def botaoreiniciar_teste(self):
+        winsound.PlaySound(None,winsound.SND_ASYNC)
         self.botaoreiniciar.destroy()
         
         self.botao0 = tk.Button(self.window_classico)
